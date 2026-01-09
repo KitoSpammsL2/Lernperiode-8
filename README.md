@@ -2,4 +2,6 @@
 
 ## 09.01.2026
 
-<img width="1187" height="737" alt="image" src="https://github.com/user-attachments/assets/d4e442b1-393e-4f84-921d-80efc3632479" />
+
+<img width="1253" height="758" alt="image" src="https://github.com/user-attachments/assets/e733a1a9-ca82-43a4-897b-3ec3921bad13" />
+
