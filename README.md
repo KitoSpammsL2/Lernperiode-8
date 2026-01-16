@@ -13,3 +13,17 @@ Ich habe mich für Godot entschieden. Ich habe überlegt, ein Tycoon Spiel zu ma
 -  [ ] C# Script anbinden + “UI Test”
 -  [ ] Core Loop: Geld pro Sekunde + Kaufen/Leveln
 -  [ ] Save/Load + Offline Earnings
+
+
+Ich habe nichts davon gemacht, weil ich es zu schwer fand. Außerdem dauert das für nur drei Wochen viel zu lange. Ich glaube, ich habe mir da etwas zu viel vorgenommen. Deshalb habe ich mir ein neues Tutorial gesucht. Jetzt mache ich eine Art Jump-and-Run, das mich ein bisschen an Mario erinnert.
+
+<img width="1164" height="717" alt="image" src="https://github.com/user-attachments/assets/af0cf0c8-ce8f-4f47-91e4-5c0e4065b2e2" />
+
+
+## 23.01
+
+- [ ] Enemy hinzufügen
+- [ ] Sterben hinzufügen
+- [ ] Ein Score hinzufügen
+- [ ] Audio hinzufügen
+- [ ] Mehr Animationen hinzufügen für den PLayer. (Links, rechts)
