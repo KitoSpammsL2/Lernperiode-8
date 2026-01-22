@@ -23,7 +23,8 @@ Ich habe nichts davon gemacht, weil ich es zu schwer fand. Außerdem dauert das 
 ## 23.01
 
 - [ ] Enemy hinzufügen
-- [ ] Moving Platforms
+- [x] Moving Platforms
+- [ ] Coins
 - [ ] Sterben hinzufügen
 - [ ] Ein Score hinzufügen
 - [ ] Audio hinzufügen
