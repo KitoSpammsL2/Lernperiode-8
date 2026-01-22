@@ -22,10 +22,10 @@ Ich habe nichts davon gemacht, weil ich es zu schwer fand. Außerdem dauert das 
 
 ## 23.01
 
-- [ ] Enemy hinzufügen
 - [x] Moving Platforms
-- [ ] Coins
-- [ ] Sterben hinzufügen
+- [x] Coins
+- [x] Sterben hinzufügen
+- [ ] Enemy hinzufügen
 - [ ] Ein Score hinzufügen
 - [ ] Audio hinzufügen
 - [ ] Mehr Animationen hinzufügen für den PLayer. (Links, rechts)
