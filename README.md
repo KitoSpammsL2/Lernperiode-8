@@ -23,8 +23,20 @@ Ich habe nichts davon gemacht, weil ich es zu schwer fand. Außerdem dauert das 
 ## 23.01
 
 - [x] Moving Platforms
-- [x] Coins
+- [x] Coins mit animation
 - [x] Sterben hinzufügen
+- [x] Hintergrund und Map erweitern
+
+Heute konnte ich wieder einiges weiterentwickeln. Ich habe zum Beispiel Moving Platforms hinzugefügt und die App allgemein erweitert, damit alles besser funktioniert und mehr Spaß macht. Ausserdem habe ich Coins eingebaut, die man sammeln kann, und auch das Sterben bzw. ein Game-Over-System hinzugefügt. Dadurch fühlt sich das Spiel schon viel mehr wie ein richtiges Game an.
+
+Ich merke immer mehr, dass mir das Arbeiten mit Godot persönlich sehr viel Spass macht, weil man schnell Fortschritte sieht und kreativ sein kann. Insgesamt bin ich mit dem heutigen Ergebnis sehr zufrieden. Ich freue mich jetzt schon darauf, nach den Ferien weiterzumachen und noch mehr Features einzubauen.
+
+<img width="1160" height="729" alt="image" src="https://github.com/user-attachments/assets/251a010c-2fae-4131-be3a-701f7b8bb447" />
+
+
+
+
+
 - [ ] Enemy hinzufügen
 - [ ] Ein Score hinzufügen
 - [ ] Audio hinzufügen
