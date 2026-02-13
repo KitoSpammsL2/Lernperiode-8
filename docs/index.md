@@ -1,110 +1,207 @@
 ---
-title: Godot Basics – 2D Jump-and-Run (Mario-Style)
+Godot 4 – 2D Platformer Tutorial
 ---
 
 # Goal
 
-In this tutorial, you will learn the basics of Godot by creating a small 2D jump-and-run game (Mario-style).
-We will build a playable prototype with:
+In this tutorial, you will create a simple 2D platformer using Godot 4.
 
-- Player movement (left/right)
-- Jumping + gravity
-- Collisions (ground, platforms)
-- Coins (collectibles) with animation
+The game is inspired by classic Mario-style platformers and will include:
+
+- Player movement
+- Jumping with gravity
+- Worldbuilding with a TileMap
 - Moving platforms
-- Death / restart using a KillZone
+- Collectible coins
+- A simple death and restart system
+
+---
 
 # Previous Knowledge
 
-We'll assume you:
+Before starting, you should:
 
-- Have **Godot 4** installed
-- Know basic programming ideas (variables, if, functions)
-- Can open a Godot project and press **Play**
+- Have Godot 4 installed
+- Understand basic programming concepts (variables, functions, conditions)
+- Know how to create and run a Godot project
+
+---
 
 # What you'll learn
 
-After this tutorial you understand:
+After completing this tutorial, you will understand:
 
-- What **Scenes** and **Nodes** are in Godot
-- How to build a Player with **CharacterBody2D**
-- How **_physics_process()**, gravity and **move_and_slide()** work
-- How to use **Area2D + Signals** for coins and kill zones
-- How to structure a small project cleanly
-
-# Tutorial
-
-## 1) Godot basics: Scenes, Nodes, Inspector
-
-Godot projects are built from **Scenes**.  
-A Scene is a tree of **Nodes** (each node has a job).
-
-Example idea for this project:
-
-- `game.tscn` = main level scene
-- `player.tscn` = player object
-- `coin.tscn` = collectible coin
-- `platform.tscn` = moving platform
-- `killzone.tscn` = restarts the game when player touches it
-
-**Inspector**: You can change values live (position, scale, exported variables, collision settings).
-
-> TODO: Screenshot Node tree (optional)
+- How Scenes and Nodes work in Godot
+- How to use CharacterBody2D for movement
+- How gravity and jumping are implemented
+- How to use Area2D and signals
+- How to restart a scene
+- How to structure a simple 2D game project
 
 ---
 
-## 2) Input Map (controls)
+# Player 1.0
 
-Open:
+We start by creating the player.
 
-**Project → Project Settings → Input Map**
+## Scene Setup
 
-Create these actions:
+Create a new scene called `player.tscn`.
 
-- `move_left` (A / Left Arrow)
-- `move_right` (D / Right Arrow)
-- `jump` (Space)
+Root node:
 
-This way your code works on any keyboard and you can easily change controls later.
+- `CharacterBody2D`
 
----
-
-## 3) Player Scene (CharacterBody2D)
-
-Create `player.tscn`:
-
-**Root node:** `CharacterBody2D`  
-Add children:
+Add the following child nodes:
 
 - `Sprite2D`
 - `CollisionShape2D`
 
-Why this matters:
-- Without `CollisionShape2D` you will fall through the ground.
-- `CharacterBody2D` is made for player movement and collisions.
+The `CharacterBody2D` node is designed for characters that move and collide using physics.
 
-Attach a script named `player.gd` to the Player.
+---
 
-### Player movement + jump (GDScript)
+## Player Movement Script
+
+Attach a script called `player.gd`.
 
 ```gdscript
 extends CharacterBody2D
 
-@export var speed := 200.0
-@export var jump_velocity := -400.0
-@export var gravity := 900.0
+const SPEED = 130.0
+const JUMP_VELOCITY = -350.0
 
 func _physics_process(delta: float) -> void:
-	# Gravity
-	if not is_on_floor():
-		velocity.y += gravity * delta
 
-	# Left / Right
-	var direction := Input.get_axis("move_left", "move_right")
-	velocity.x = direction * speed
+	# Apply gravity
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 
 	# Jump
 	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_velocity
+		velocity.y = JUMP_VELOCITY
+
+	# Horizontal movement
+	var direction := Input.get_axis("left", "right")
+
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+```
+
+This script handles:
+
+- Gravity  
+- Jumping  
+- Smooth left and right movement  
+
+---
+
+# Input Map Setup
+
+Open:
+
+Project → Project Settings → Input Map
+
+Add the following actions:
+
+- `left`
+- `right`
+- `jump`
+
+Assign keys such as:
+
+- A / D  
+- Arrow keys  
+- Space  
+
+Without setting up the Input Map correctly, movement will not work.
+
+---
+
+# Worldbuilding 1.0
+
+Now we create the level.
+
+## TileMap
+
+Open your main scene (for example `game.tscn`).
+
+Add a `TileMap` node.
+
+Import or create a Tileset and make sure:
+
+- Collision shapes are defined inside the Tileset editor.
+
+If collision shapes are missing, the player will fall through the ground.
+
+Use the TileMap to design a simple platform layout.
+
+---
+
+# Platforms
+
+To make the level more dynamic, we add moving platforms.
+
+## Platform Scene
+
+Create a new scene called `platform.tscn`.
+
+Root node:
+
+- `AnimatableBody2D`
+
+Add:
+
+- `Sprite2D`
+- `CollisionShape2D`
+- `AnimationPlayer`
+
+## Platform Movement
+
+Using the `AnimationPlayer`:
+
+1. Create a new animation.  
+2. Animate the platform’s position.  
+3. Enable looping.  
+
+This creates a back-and-forth movement typical for platformer games.
+
+---
+
+# Pickups (Coins)
+
+Next, we add collectibles.
+
+## Coin Scene
+
+Create `coin.tscn`.
+
+Root node:
+
+- `Area2D`
+
+Add:
+
+- `Sprite2D`
+- `CollisionShape2D`
+
+Connect the `body_entered` signal to a script.
+
+Attach `coin.gd`:
+
+```gdscript
+extends Area2D
+
+func _on_body_entered(body: Node2D) -> void:
+	print("+1 coin")
+	queue_free()
+
+
+
+```
+
+n is not set to loop.
