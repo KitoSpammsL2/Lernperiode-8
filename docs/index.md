@@ -147,7 +147,7 @@ If collision shapes are missing, the player will fall through the ground.
 Use the TileMap to design a simple platform layout.
 
 
-<img width="1256" height="872" alt="image" src="https://github.com/user-attachments/assets/210767f0-f678-464d-b861-21b60c3a0c91" />
+<img width="656" height="372" alt="image" src="https://github.com/user-attachments/assets/210767f0-f678-464d-b861-21b60c3a0c91" />
 
 ---
 
