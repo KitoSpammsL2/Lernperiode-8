@@ -1,79 +1,110 @@
 ---
-title: Godot Basics – 2D Jump and Run
+title: Godot Basics – 2D Jump-and-Run (Mario-Style)
 ---
 
 # Goal
 
-In this tutorial, you will learn how to create a simple 2D jump-and-run game in Godot.  
-We will build a small Mario-style prototype to understand the basic concepts of Godot.
+In this tutorial, you will learn the basics of Godot by creating a small 2D jump-and-run game (Mario-style).
+We will build a playable prototype with:
+
+- Player movement (left/right)
+- Jumping + gravity
+- Collisions (ground, platforms)
+- Coins (collectibles) with animation
+- Moving platforms
+- Death / restart using a KillZone
 
 # Previous Knowledge
 
 We'll assume you:
 
-- Have Godot installed (Version 4.x)
-- Know basic programming concepts (variables, functions, if-statements)
-- Can create a new Godot project
+- Have **Godot 4** installed
+- Know basic programming ideas (variables, if, functions)
+- Can open a Godot project and press **Play**
 
 # What you'll learn
 
-In this tutorial, you will learn:
+After this tutorial you understand:
 
-- How Scenes and Nodes work in Godot
-- How to create a Player using CharacterBody2D
-- How to add movement and jumping
-- How to use collisions
-- How to create coins using Area2D and signals
-- How to restart the game when the player falls
+- What **Scenes** and **Nodes** are in Godot
+- How to build a Player with **CharacterBody2D**
+- How **_physics_process()**, gravity and **move_and_slide()** work
+- How to use **Area2D + Signals** for coins and kill zones
+- How to structure a small project cleanly
 
 # Tutorial
 
-## 1. Create the Player
+## 1) Godot basics: Scenes, Nodes, Inspector
 
-Create a new scene and add:
+Godot projects are built from **Scenes**.  
+A Scene is a tree of **Nodes** (each node has a job).
 
-- CharacterBody2D
-- Sprite2D
-- CollisionShape2D
+Example idea for this project:
 
-Rename the root node to `Player`.
+- `game.tscn` = main level scene
+- `player.tscn` = player object
+- `coin.tscn` = collectible coin
+- `platform.tscn` = moving platform
+- `killzone.tscn` = restarts the game when player touches it
+
+**Inspector**: You can change values live (position, scale, exported variables, collision settings).
+
+> TODO: Screenshot Node tree (optional)
 
 ---
 
-## 2. Add Movement Script
+## 2) Input Map (controls)
 
-Attach a script to the Player:
+Open:
 
-```csharp
-using Godot;
+**Project → Project Settings → Input Map**
 
-public partial class Player : CharacterBody2D
-{
-    private float speed = 200f;
-    private float jumpVelocity = -400f;
-    private float gravity = 900f;
+Create these actions:
 
-    public override void _PhysicsProcess(double delta)
-    {
-        Vector2 velocity = Velocity;
+- `move_left` (A / Left Arrow)
+- `move_right` (D / Right Arrow)
+- `jump` (Space)
 
-        // Gravity
-        if (!IsOnFloor())
-            velocity.Y += gravity * (float)delta;
+This way your code works on any keyboard and you can easily change controls later.
 
-        // Left & Right movement
-        if (Input.IsActionPressed("move_right"))
-            velocity.X = speed;
-        else if (Input.IsActionPressed("move_left"))
-            velocity.X = -speed;
-        else
-            velocity.X = 0;
+---
 
-        // Jump
-        if (Input.IsActionJustPressed("jump") && IsOnFloor())
-            velocity.Y = jumpVelocity;
+## 3) Player Scene (CharacterBody2D)
 
-        Velocity = velocity;
-        MoveAndSlide();
-    }
-}
+Create `player.tscn`:
+
+**Root node:** `CharacterBody2D`  
+Add children:
+
+- `Sprite2D`
+- `CollisionShape2D`
+
+Why this matters:
+- Without `CollisionShape2D` you will fall through the ground.
+- `CharacterBody2D` is made for player movement and collisions.
+
+Attach a script named `player.gd` to the Player.
+
+### Player movement + jump (GDScript)
+
+```gdscript
+extends CharacterBody2D
+
+@export var speed := 200.0
+@export var jump_velocity := -400.0
+@export var gravity := 900.0
+
+func _physics_process(delta: float) -> void:
+	# Gravity
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+	# Left / Right
+	var direction := Input.get_axis("move_left", "move_right")
+	velocity.x = direction * speed
+
+	# Jump
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_velocity
+
+	move_and_slide()
