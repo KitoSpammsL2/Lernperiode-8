@@ -304,3 +304,11 @@ This is the foundation for expanding the game with:
 
 - Moving platform does not move  
   → The animation is not set to loop.
+
+
+
+
+https://github.com/user-attachments/assets/bc1a3247-e038-4475-8db0-fa8fa8fd5653
+
+
+  
