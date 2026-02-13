@@ -1,6 +1,6 @@
----
-Godot 4 – 2D Platformer Tutorial
----
+
+# Godot 4 – 2D Platformer Tutorial
+
 
 # Goal
 
