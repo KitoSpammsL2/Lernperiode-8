@@ -1,5 +1,21 @@
 # Lernperiode-8
 
+## Mein Projekt – 2D Platformer mit Godot 4
+
+In diesem Projekt habe ich ein 2D Jump-and-Run-Spiel mit Godot 4 entwickelt, das vom klassischen Mario-Stil inspiriert ist. Ziel war es, die grundlegenden Funktionen der Game-Engine praktisch kennenzulernen und ein kleines, spielbares Prototype-Game zu erstellen.
+
+Der Spieler basiert auf einem `CharacterBody2D` und kann sich nach links und rechts bewegen sowie springen. Die Gravitation wird über die Physics-Funktion von Godot umgesetzt. Das Level wurde mit einer `TileMap` erstellt, wobei im Tileset Kollisionen definiert wurden, damit der Spieler korrekt auf dem Boden stehen kann. Zusätzlich habe ich Coins eingebaut, die beim Berühren verschwinden, bewegliche Plattformen mit einem AnimationPlayer erstellt sowie eine KillZone implementiert, die das Level neu startet, wenn der Spieler hineinfällt.
+
+Am Ende entstand ein funktionierender 2D-Platformer mit Bewegung, Sprungmechanik, Kollisionen, Collectibles und einem einfachen Death-System.
+
+
+
+
+
+https://github.com/user-attachments/assets/35397d9d-13e6-4e9d-8f54-e29ae9d19d87
+
+
+
 
 ## 09.01
 
