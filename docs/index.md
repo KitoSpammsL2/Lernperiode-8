@@ -203,5 +203,90 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 ```
+When the player touches the coin:
 
-n is not set to loop.
+- A message is printed  
+- The coin disappears  
+
+This introduces the concept of Signals in Godot.
+
+---
+
+# Dying 1.0
+
+Now we implement a simple death system.
+
+## KillZone Scene
+
+Create `killzone.tscn`.
+
+Root node:
+
+- `Area2D`
+
+Add:
+
+- `CollisionShape2D`
+- `Timer`
+
+Attach `killzone.gd`:
+
+```gdscript
+extends Area2D
+
+@onready var timer: Timer = $Timer
+
+func _on_body_entered(body: Node2D) -> void:
+	print("You died!")
+	timer.start()
+
+func _on_timer_timeout() -> void:
+	get_tree().reload_current_scene()
+When the player enters the KillZone:
+
+- A message is printed  
+- After a short delay, the level restarts  
+
+This creates a basic but functional death mechanic.
+
+---
+
+# Result
+
+At this stage, you have built a complete 2D platformer prototype:
+
+- The player can move and jump  
+- The world has proper collisions  
+- Platforms move dynamically  
+- Coins can be collected  
+- The level restarts when the player dies  
+
+This is the foundation for expanding the game with:
+
+- Enemies  
+- Score systems  
+- Sound effects  
+- Checkpoints  
+- UI elements  
+
+---
+
+# What could go wrong?
+
+- Player falls through the ground  
+  → `CollisionShape2D` is missing or the TileMap has no collision.
+
+- Jump does not work  
+  → The `jump` action is not configured in the Input Map.
+
+- Player does not move  
+  → The `left` and `right` actions are missing or named incorrectly.
+
+- Coins do not disappear  
+  → The `body_entered` signal is not connected.
+
+- KillZone does not restart the level  
+  → The Timer is not connected or not started.
+
+- Moving platform does not move  
+  → The animation is not set to loop.
