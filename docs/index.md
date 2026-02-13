@@ -40,7 +40,7 @@ After completing this tutorial, you will understand:
 
 ---
 
-# Player 1.0
+# Player
 
 We start by creating the player.
 
@@ -122,7 +122,7 @@ Without setting up the Input Map correctly, movement will not work.
 
 ---
 
-# Worldbuilding 1.0
+# Worldbuilding 
 
 Now we create the level.
 
@@ -212,7 +212,7 @@ This introduces the concept of Signals in Godot.
 
 ---
 
-# Dying 1.0
+# Dying 
 
 Now we implement a simple death system.
 
@@ -242,6 +242,10 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	get_tree().reload_current_scene()
+
+```
+
+
 When the player enters the KillZone:
 
 - A message is printed  
