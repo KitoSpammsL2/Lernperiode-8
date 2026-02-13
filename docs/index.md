@@ -59,6 +59,9 @@ Add the following child nodes:
 
 The `CharacterBody2D` node is designed for characters that move and collide using physics.
 
+<img width="295" height="162" alt="image" src="https://github.com/user-attachments/assets/58b4122c-d16a-4c53-bd4d-506170aa42b5" />
+
+
 ---
 
 ## Player Movement Script
@@ -120,6 +123,9 @@ Assign keys such as:
 
 Without setting up the Input Map correctly, movement will not work.
 
+
+<img width="655" height="352" alt="image" src="https://github.com/user-attachments/assets/41fbaaf9-e81c-4914-a59d-e21be39ec3c4" />
+
 ---
 
 # Worldbuilding 
@@ -139,6 +145,9 @@ Import or create a Tileset and make sure:
 If collision shapes are missing, the player will fall through the ground.
 
 Use the TileMap to design a simple platform layout.
+
+
+<img width="1256" height="872" alt="image" src="https://github.com/user-attachments/assets/210767f0-f678-464d-b861-21b60c3a0c91" />
 
 ---
 
@@ -200,6 +209,7 @@ func _on_body_entered(body: Node2D) -> void:
 	print("+1 coin")
 	queue_free()
 
+<img width="521" height="330" alt="image" src="https://github.com/user-attachments/assets/38a5460d-ce89-4b75-8355-856b9aa9d31e" />
 
 
 ```
